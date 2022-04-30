@@ -8,7 +8,7 @@
 #include "GameManagement.hpp"
 
 Garden::GameManagement::GameManagement(std::string _gameName, sf::Color _clearColor) {
-    window.create(sf::VideoMode(1920, 1080), _gameName, sf::Style::Close);
+    window.create(sf::VideoMode(1280, 800), _gameName, sf::Style::Close);
     if (!window.isOpen()) {
         std::cerr << "[GardenBusiness] Internal Error, Game has crashed !" << std::endl;
         this->isEnable = false;
@@ -33,12 +33,19 @@ void Garden::GameManagement::handleEvent() {
 }
 
 bool Garden::GameManagement::gameLogic() {
+    this->deltaTime = deltaClock.getElapsedTime().asSeconds();
     window.clear(this->clearColor);
     while (window.pollEvent(this->event)) {
         handleEvent();
     }
     graphicDisplay();
-    player.movePlayer();
+    if (this->deltaTime > 1.00 / 60) {
+        this->deltaClock.restart();
+        while (this->deltaTime > 1.00 / 60) {
+            player.movePlayer();
+            this->deltaTime -= 1.00 / 60;
+        }
+    }
     player.playerRender(this->window);
     window.display();
     return this->isEnable;
