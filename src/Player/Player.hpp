@@ -13,8 +13,8 @@
 namespace Garden {
     class Player {
         protected:
-            enum directionX {NONE_X, UP, DOWN};
-            enum directionY {NONE_Y, LEFT, RIGHT};
+            enum DirectionX {NONE_X, UP, DOWN};
+            enum DirectionY {NONE_Y, LEFT, RIGHT};
 
         public:
             Player();
@@ -23,8 +23,8 @@ namespace Garden {
             void playerRender(sf::RenderWindow& window);
             void playerEvent(sf::Event event);
 
-            void playerDirectionX(directionX direction);
-            void playerDirectionY(directionY direction);
+            void playerDirectionX(DirectionX direction);
+            void playerDirectionY(DirectionY direction);
             void movePlayer();
 
             void setPlayerTexture(const std::string& filename);
@@ -34,8 +34,8 @@ namespace Garden {
             float _posX;
             float _posY;
             float _speed;
-            directionX _directionX;
-            directionY _directionY;
+            DirectionX _directionX;
+            DirectionY _directionY;
             sf::Texture _playerTexture;
             sf::Sprite _playerSprite;
     };
