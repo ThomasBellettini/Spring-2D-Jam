@@ -27,15 +27,13 @@ namespace Garden {
             void playerDirectionY(directionY direction);
             void movePlayer();
 
-            void setPlayerTexture(const sf::Texture& texture);
             void setPlayerTexture(const std::string& filename);
-            void setPlayerSprite(sf::Sprite sprite);
             void setPlayerSprite(const sf::Texture& texture);
 
         private:
-            int _posX;
-            int _posY;
-            int _speed;
+            float _posX;
+            float _posY;
+            float _speed;
             directionX _directionX;
             directionY _directionY;
             sf::Texture _playerTexture;

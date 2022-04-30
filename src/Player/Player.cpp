@@ -7,10 +7,11 @@
 
 #include "Player.hpp"
 
-Garden::Player::Player() : _posX(0), _posY(0), _speed(1), _directionX(NONE_X), _directionY(NONE_Y)
+Garden::Player::Player() : _posX(0), _posY(0), _speed(0.5), _directionX(NONE_X), _directionY(NONE_Y)
 {
     setPlayerTexture("../asset/pot.png");
     setPlayerSprite(_playerTexture);
+    _playerSprite.setScale(0.1, 0.1);
 }
 
 Garden::Player::~Player() = default;
@@ -32,15 +33,17 @@ void Garden::Player::playerEvent(sf::Event event)
             playerDirectionX(DOWN);
         if (event.key.code == sf::Keyboard::D)
             playerDirectionY(RIGHT);
+        if (event.key.code == sf::Keyboard::I)
+            ;
     }
     if (event.type == sf::Event::KeyReleased) {
-        if (event.key.code == sf::Keyboard::Z)
+        if (event.key.code == sf::Keyboard::Z && _directionX == UP)
             playerDirectionX(NONE_X);
-        if (event.key.code == sf::Keyboard::Q)
+        if (event.key.code == sf::Keyboard::Q && _directionY == LEFT)
             playerDirectionY(NONE_Y);
-        if (event.key.code == sf::Keyboard::S)
+        if (event.key.code == sf::Keyboard::S && _directionX == DOWN)
             playerDirectionX(NONE_X);
-        if (event.key.code == sf::Keyboard::D)
+        if (event.key.code == sf::Keyboard::D && _directionY == RIGHT)
             playerDirectionY(NONE_Y);
     }
 }
@@ -51,6 +54,8 @@ void Garden::Player::playerDirectionX(directionX direction)
         _directionX = UP;
     if (direction == DOWN)
         _directionX = DOWN;
+    if (direction == NONE_X)
+        _directionX = NONE_X;
 }
 
 void Garden::Player::playerDirectionY(directionY direction)
@@ -59,13 +64,15 @@ void Garden::Player::playerDirectionY(directionY direction)
         _directionY = LEFT;
     if (direction == RIGHT)
         _directionY = RIGHT;
+    if (direction == NONE_Y)
+        _directionY = NONE_Y;
 }
 
 void Garden::Player::movePlayer()
 {
-    int tmp = _speed;
+    float tmp = _speed;
     if (_directionX != NONE_X && _directionY != NONE_Y)
-        tmp /= 2;
+        tmp /= 1.5;
     if (_directionX == UP)
         _posX -= tmp;
     if (_directionX == DOWN)
@@ -76,19 +83,9 @@ void Garden::Player::movePlayer()
         _posY += tmp;
 }
 
-void Garden::Player::setPlayerTexture(const sf::Texture& texture)
-{
-    _playerTexture = texture;
-}
-
 void Garden::Player::setPlayerTexture(const std::string& filename)
 {
     _playerTexture.loadFromFile(filename);
-}
-
-void Garden::Player::setPlayerSprite(sf::Sprite sprite)
-{
-    _playerSprite = sprite;
 }
 
 void Garden::Player::setPlayerSprite(const sf::Texture& texture)
