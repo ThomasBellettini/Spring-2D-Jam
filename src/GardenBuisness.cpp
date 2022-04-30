@@ -6,11 +6,39 @@
 */
 
 #include "./Game/GameManagement.hpp"
-#include <windows.h>
+#include "../include/libs.hpp"
 
-int main() {
-    ShowWindow(GetConsoleWindow(), SW_HIDE);
+void enableDebug() {
+    AllocConsole();
+    freopen("CONIN$", "r", stdin);
+    freopen("CONOUT$", "w", stdout);
+    freopen("CONOUT$", "w", stderr);
+}
+
+void debug(std::string msg)
+{
+    std::cout << "[GardenBusiness] (DEBUG) " << msg << std::endl;
+}
+
+void debug(double msg)
+{
+    std::cout << "[GardenBusiness] (DEBUG) " << msg << std::endl;
+}
+
+int main(int argSize, char **arg) {/**
+    if (argSize > 1) {
+        std::string s(arg[1]);
+        if (s == "--debug") {
+            enableDebug();
+        } else {
+            ShowWindow(GetConsoleWindow(), SW_HIDE);
+        }
+    } else {
+        ShowWindow(GetConsoleWindow(), SW_HIDE);
+    }**/
+    enableDebug();
     Garden::GameManagement game ("GardenBusiness", sf::Color::Black);
+    std::cout << "Hello\n";
     while (game.gameLogic());
 
     return 0;
