@@ -6,6 +6,7 @@
 */
 
 #include "../Plant/APlant.hpp"
+#include "../Plant/Plot.hpp"
 #include "../../include/libs.hpp"
 
 #ifndef JAM_GARDENBUSINESS_GAMEMANAGEMENT_HPP
@@ -20,18 +21,20 @@ namespace Garden {
         void graphicDisplay();
         void handleEvent();
 
+        const std::list<Plot> &get_plot_list() const;
+
         ~GameManagement();
 
     private:
-        APlant getPlantIndex(int index) {
-            auto it = plantList.begin();
+        Plot getPlantIndex(int index) {
+            auto it = plotList.begin();
             for (int i = 0; i < index; i++, it++);
             return *it;
         };
         sf::Color clearColor;
         sf::RenderWindow window;
         sf::Event event;
-        std::list<APlant> plantList;
+        std::list<Plot> plotList;
 
         bool isEnable;
         sf::Clock clock;
