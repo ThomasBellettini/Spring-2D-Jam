@@ -6,6 +6,7 @@
 */
 
 #include "../Plant/APlant.hpp"
+#include "../Plant/Plot.hpp"
 #include "../../include/libs.hpp"
 #include "../Player/Player.hpp"
 
@@ -21,18 +22,20 @@ namespace Garden {
         void graphicDisplay();
         void handleEvent();
 
+        const std::list<Plot> &get_plot_list() const;
+
         ~GameManagement();
 
         sf::RenderWindow window;
     private:
-        APlant getPlantIndex(int index) {
-            auto it = plantList.begin();
+        Plot getPlantIndex(int index) {
+            auto it = plotList.begin();
             for (int i = 0; i < index; i++, it++);
             return *it;
         };
         sf::Color clearColor;
         sf::Event event;
-        std::list<APlant> plantList;
+        std::list<Plot> plotList;
 
         bool isEnable;
         sf::Clock clock;
