@@ -7,6 +7,7 @@
 
 #include "../Plant/APlant.hpp"
 #include "../../include/libs.hpp"
+#include "../Player/Player.hpp"
 
 #ifndef JAM_GARDENBUSINESS_GAMEMANAGEMENT_HPP
 #define JAM_GARDENBUSINESS_GAMEMANAGEMENT_HPP
@@ -22,6 +23,7 @@ namespace Garden {
 
         ~GameManagement();
 
+        sf::RenderWindow window;
     private:
         APlant getPlantIndex(int index) {
             auto it = plantList.begin();
@@ -29,7 +31,6 @@ namespace Garden {
             return *it;
         };
         sf::Color clearColor;
-        sf::RenderWindow window;
         sf::Event event;
         std::list<APlant> plantList;
 
