@@ -48,7 +48,7 @@ void Garden::Player::playerEvent(sf::Event event)
     }
 }
 
-void Garden::Player::playerDirectionX(directionX direction)
+void Garden::Player::playerDirectionX(DirectionX direction)
 {
     if (direction == UP)
         _directionX = UP;
@@ -58,7 +58,7 @@ void Garden::Player::playerDirectionX(directionX direction)
         _directionX = NONE_X;
 }
 
-void Garden::Player::playerDirectionY(directionY direction)
+void Garden::Player::playerDirectionY(DirectionY direction)
 {
     if (direction == LEFT)
         _directionY = LEFT;
