@@ -44,6 +44,10 @@ namespace Garden {
 
         bool isEnable;
         sf::Clock clock;
+
+        sf::Clock deltaClock;
+        float deltaTime;
+
     };
 }
 
