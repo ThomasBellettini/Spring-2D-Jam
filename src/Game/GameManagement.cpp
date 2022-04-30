@@ -7,6 +7,11 @@
 
 #include "GameManagement.hpp"
 
+void str(Garden::Player player)
+{
+
+}
+
 Garden::GameManagement::GameManagement(std::string _gameName, sf::Color _clearColor) {
     window.create(sf::VideoMode(1280, 800), _gameName, sf::Style::Close);
     if (!window.isOpen()) {
@@ -17,11 +22,16 @@ Garden::GameManagement::GameManagement(std::string _gameName, sf::Color _clearCo
     this->clearColor = _clearColor;
     this->isEnable = true;
 
-    IPlant *plant = new APlant("Colza", "A beautiful yellow plant", 5.0, false, "../asset/colza.png",
-                  "../asset/colza.png", "../asset/colza.png");
-    Plot plot (10, 15, 0, 0);
-    plot.set_plant(plant);
-    plotList.push_back(plot);
+//    IPlant *plant = new APlant("Colza", "A beautiful yellow plant", 5.0, false, "../asset/colza.png",
+//                  "../asset/colza.png", "../asset/colza.png");
+//    Plot plot (10, 15, 0, 0);
+//    plot.set_plant(plant);
+//    plotList.push_back(plot);
+
+    Garden::Npc npc (&str, 100, 100, 20, 20, "", "");
+
+
+
 }
 
 void Garden::GameManagement::handleEvent() {
@@ -52,6 +62,7 @@ bool Garden::GameManagement::gameLogic() {
 }
 
 void Garden::GameManagement::graphicDisplay() {
+    if (plotList.empty()) return;
     if (this->clock.getElapsedTime().asSeconds() >= 5) {
         for (int i = 0; i < this->plotList.size(); i++) {
             getPlantIndex(i).get_plant()->updateTick();

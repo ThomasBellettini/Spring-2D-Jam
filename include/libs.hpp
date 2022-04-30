@@ -13,6 +13,7 @@
 #include <filesystem>
 #include <unistd.h>
 #include <Windows.h>
+#include "../src/Utils/GardenText.hpp"
 
 #ifndef JAM_GARDENBUSINESS_LIBS_HPP
 #define JAM_GARDENBUSINESS_LIBS_HPP

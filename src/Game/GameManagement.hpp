@@ -8,6 +8,7 @@
 #include "../Plant/APlant.hpp"
 #include "../Plant/Plot.hpp"
 #include "../../include/libs.hpp"
+#include "../Npc/Npc.hpp"
 
 #include "../Player/Player.hpp"
 
@@ -39,6 +40,7 @@ namespace Garden {
         sf::Color clearColor;
         sf::Event event;
         std::list<Plot> plotList;
+        std::list<Npc> npcList;
 
         Garden::Player player;
 

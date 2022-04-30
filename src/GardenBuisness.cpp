@@ -37,7 +37,7 @@ int main(int argSize, char **arg) {/**
         ShowWindow(GetConsoleWindow(), SW_HIDE);
     }**/
     enableDebug();
-    Garden::GameManagement game ("GardenBusiness", sf::Color::Black);
+    Garden::GameManagement game ("GardenBusiness", sf::Color::White);
     std::cout << "Hello\n";
     while (game.gameLogic());
 

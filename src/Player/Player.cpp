@@ -7,7 +7,7 @@
 
 #include "Player.hpp"
 
-Garden::Player::Player() : _posX(0), _posY(0), _speed(0.5), _directionX(NONE_X), _directionY(NONE_Y)
+Garden::Player::Player() : _posX(0), _posY(0), _speed(25), _directionX(NONE_X), _directionY(NONE_Y)
 {
     setPlayerTexture("../asset/pot.png");
     setPlayerSprite(_playerTexture);
