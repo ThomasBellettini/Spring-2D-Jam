@@ -8,7 +8,7 @@
 #include "GameManagement.hpp"
 
 Garden::GameManagement::GameManagement(std::string _gameName, sf::Color _clearColor) {
-    window.create(sf::VideoMode(1920/2, 1080/2), _gameName, sf::Style::Close);
+    window.create(sf::VideoMode(1920, 1080), _gameName, sf::Style::Close);
     if (!window.isOpen()) {
         std::cerr << "[GardenBusiness] Internal Error, Game has crashed !" << std::endl;
         this->isEnable = false;
@@ -29,6 +29,7 @@ void Garden::GameManagement::handleEvent() {
         this->window.close();
         this->isEnable = false;
     }
+    player.playerEvent(this->event);
 }
 
 bool Garden::GameManagement::gameLogic() {
@@ -37,6 +38,8 @@ bool Garden::GameManagement::gameLogic() {
         handleEvent();
     }
     graphicDisplay();
+    player.movePlayer();
+    player.playerRender(this->window);
     window.display();
     return this->isEnable;
 }
@@ -64,6 +67,10 @@ void Garden::GameManagement::graphicDisplay() {
 
 const std::list<Garden::Plot> &Garden::GameManagement::get_plot_list() const {
     return plotList;
+}
+
+const Garden::Player &Garden::GameManagement::get_player() const {
+    return player;
 }
 
 Garden::GameManagement::~GameManagement() = default;

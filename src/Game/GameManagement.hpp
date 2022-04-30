@@ -8,6 +8,7 @@
 #include "../Plant/APlant.hpp"
 #include "../Plant/Plot.hpp"
 #include "../../include/libs.hpp"
+
 #include "../Player/Player.hpp"
 
 #ifndef JAM_GARDENBUSINESS_GAMEMANAGEMENT_HPP
@@ -22,6 +23,8 @@ namespace Garden {
         void graphicDisplay();
         void handleEvent();
 
+        const Player &get_player() const;
+
         const std::list<Plot> &get_plot_list() const;
 
         ~GameManagement();
@@ -32,10 +35,12 @@ namespace Garden {
             auto it = plotList.begin();
             for (int i = 0; i < index; i++, it++);
             return *it;
-        };
+        }
         sf::Color clearColor;
         sf::Event event;
         std::list<Plot> plotList;
+
+        Garden::Player player;
 
         bool isEnable;
         sf::Clock clock;

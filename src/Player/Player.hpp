@@ -5,9 +5,7 @@
 ** Player.hpp
 */
 
-#include <SFML/Graphics/Texture.hpp>
-#include <SFML/Graphics/Sprite.hpp>
-#include "../Game/GameManagement.hpp"
+#include "../../include/libs.hpp"
 
 #ifndef JAM_GARDENBUSINESS_PLAYER_HPP
 #define JAM_GARDENBUSINESS_PLAYER_HPP
@@ -22,7 +20,7 @@ namespace Garden {
             Player();
             ~Player();
 
-            void playerRender(sf::RenderWindow window);
+            void playerRender(sf::RenderWindow& window);
             void playerEvent(sf::Event event);
 
             void playerDirectionX(directionX direction);
@@ -35,8 +33,6 @@ namespace Garden {
             void setPlayerSprite(const sf::Texture& texture);
 
         private:
-
-
             int _posX;
             int _posY;
             int _speed;

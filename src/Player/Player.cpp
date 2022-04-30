@@ -7,16 +7,17 @@
 
 #include "Player.hpp"
 
-Garden::Player::Player() : _posX(0), _posY(0), _speed(10), _directionX(NONE_X), _directionY(NONE_Y)
+Garden::Player::Player() : _posX(0), _posY(0), _speed(1), _directionX(NONE_X), _directionY(NONE_Y)
 {
-    setPlayerTexture("../../asset/pot.png");
+    setPlayerTexture("../asset/pot.png");
     setPlayerSprite(_playerTexture);
 }
 
 Garden::Player::~Player() = default;
 
-void Garden::Player::playerRender(sf::RenderWindow window)
+void Garden::Player::playerRender(sf::RenderWindow &window)
 {
+    _playerSprite.setPosition(_posY, _posX);
     window.draw(_playerSprite);
 }
 
