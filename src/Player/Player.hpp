@@ -26,6 +26,7 @@ namespace Garden {
             void playerDirectionX(DirectionX direction);
             void playerDirectionY(DirectionY direction);
             void movePlayer();
+            void movePlayerRect();
 
             void setPlayerTexture(const std::string& filename);
             void setPlayerSprite(const sf::Texture& texture);
@@ -36,6 +37,8 @@ namespace Garden {
             float _speed;
             DirectionX _directionX;
             DirectionY _directionY;
+            sf::Clock _rectClock;
+            float _rectTime;
             sf::Texture _playerTexture;
             sf::Sprite _playerSprite;
     };
