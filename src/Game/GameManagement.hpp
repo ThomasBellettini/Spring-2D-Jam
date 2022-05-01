@@ -49,8 +49,6 @@ namespace Garden {
         std::list<Plot> plotList;
         std::list<Npc> npcList;
 
-//        sf::Music music;
-
         Garden::Player player;
 
         bool isEnable;
