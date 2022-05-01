@@ -7,7 +7,7 @@
 
 #include "Player.hpp"
 
-Garden::Player::Player() : _posX(500), _posY(590), _speed(5), _directionX(NONE_X), _directionY(NONE_Y), _rectTime(0)
+Garden::Player::Player() : _posX(500), _posY(590), _speed(5), _directionX(NONE_X), _directionY(NONE_Y)
 {
     setPlayerTexture("../asset/player.png");
     setPlayerSprite(_playerTexture);
@@ -21,6 +21,9 @@ void Garden::Player::playerRender(sf::RenderWindow &window)
 {
     _playerSprite.setPosition(_posY, _posX);
     window.draw(_playerSprite);
+    if (inventory.isOpen()) {
+        inventory.inventoryRender(window);
+    }
 }
 
 void Garden::Player::playerEvent(sf::Event event)
@@ -34,8 +37,12 @@ void Garden::Player::playerEvent(sf::Event event)
             playerDirectionX(DOWN);
         if (event.key.code == sf::Keyboard::D)
             playerDirectionY(RIGHT);
-        if (event.key.code == sf::Keyboard::I)
-            ;
+        if (event.key.code == sf::Keyboard::I) {
+            inventory.setOpen(true);
+            std::cout << inventory.isOpen() << std::endl;
+        }
+        if (event.key.code == sf::Keyboard::Escape && inventory.isOpen())
+            inventory.setOpen(false);
     }
     if (event.type == sf::Event::KeyReleased) {
         if (event.key.code == sf::Keyboard::Z && _directionX == UP)
@@ -100,7 +107,7 @@ void Garden::Player::movePlayer()
         _posY -= tmp;
     if (_directionY == RIGHT)
         _posY += tmp;
-    moveHitWall();
+    //moveHitWall();
     _rectTime = _rectClock.getElapsedTime().asSeconds();
     if (_rectTime > 0.15) {
         movePlayerRect();
@@ -145,6 +152,22 @@ void Garden::Player::setPlayerTexture(const std::string& filename)
 void Garden::Player::setPlayerSprite(const sf::Texture& texture)
 {
     _playerSprite.setTexture(texture);
+}
+
+float Garden::Player::getPosX() const {
+    return _posX;
+}
+
+float Garden::Player::getPosY() const {
+    return _posY;
+}
+
+void Garden::Player::setPosX(float posX) {
+    _posX = posX;
+}
+
+void Garden::Player::setPosY(float posY) {
+    _posY = posY;
 }
 
 
