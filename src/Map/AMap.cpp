@@ -7,10 +7,6 @@
 
 #include "AMap.hpp"
 
-Garden::AMap::AMap(std::string background) {
-    this->background.loadFromFile(background);
-}
-
 void Garden::AMap::renderGraphic(sf::RenderWindow &window, Garden::Player& player) {
     window.draw(sf::Sprite (this->background));
     player.playerRender(window);
@@ -26,6 +22,10 @@ void Garden::AMap::handleEvent(sf::Event &event, Garden::Player& player) {
 
 sf::Texture &Garden::AMap::getBackground() {
     return this->background;
+}
+
+Garden::AMap::AMap(const std::string &background) {
+    this->background.loadFromFile(background);
 }
 
 Garden::AMap::~AMap() = default;
