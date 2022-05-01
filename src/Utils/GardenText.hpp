@@ -15,6 +15,7 @@ public:
     GardenText(const std::string &text, const sf::Color &color);
 
     sf::Text build();
+    sf::Text build (int x, int y);
 
     virtual ~GardenText();
 

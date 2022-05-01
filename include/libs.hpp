@@ -14,6 +14,8 @@
 #include <unistd.h>
 #include <Windows.h>
 #include "../src/Utils/GardenText.hpp"
+#include <map>
+#include <SFML/Audio.hpp>
 
 #ifndef JAM_GARDENBUSINESS_LIBS_HPP
 #define JAM_GARDENBUSINESS_LIBS_HPP

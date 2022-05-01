@@ -8,6 +8,8 @@
 #include "./Game/GameManagement.hpp"
 #include "../include/libs.hpp"
 
+#include "Map/GardenMap.hpp"
+
 void enableDebug() {
     AllocConsole();
     freopen("CONIN$", "r", stdin);
@@ -39,6 +41,9 @@ int main(int argSize, char **arg) {/**
     enableDebug();
     Garden::GameManagement game ("GardenBusiness", sf::Color::White);
     std::cout << "Hello\n";
+
+    game.mapContent[Garden::Scene::GARDEN] = new Garden::GardenMap("../asset/background_garden.png");
+
     while (game.gameLogic());
 
     return 0;

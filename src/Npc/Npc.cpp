@@ -49,14 +49,17 @@ const std::string &Garden::Npc::get_npc_texture() const {
 }
 
 void Garden::Npc::buildNameTag(sf::RenderWindow &window) const {
-    sf::RectangleShape rectangle_shape (sf::Vector2f (100, 50));
-    rectangle_shape.setPosition(x - 50, y + height + 10);
+    GardenText garden_text (this->npcName, sf::Color::White);
+    sf::Text text = garden_text.build();
+
+    float base = text.getString().getSize() * 20;
+
+    sf::RectangleShape rectangle_shape (sf::Vector2f (base, 50));
+    rectangle_shape.setPosition(x - ((base / 2) - (width / 2)), (y - 50));
     rectangle_shape.setFillColor(sf::Color (0, 0, 0, 100));
     window.draw(rectangle_shape);
 
-    GardenText garden_text (this->npcName, sf::Color::White);
-    sf::Text text = garden_text.build();
-    text.setPosition((float)(x - 50) + 10, y + height + 15);
+    text.setPosition(x - ((base / 2) - (width / 2)) + 20, (y - 50));
     window.draw(text);
 }
 

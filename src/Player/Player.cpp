@@ -11,7 +11,7 @@ Garden::Player::Player() : _posX(0), _posY(0), _speed(5), _directionX(NONE_X), _
 {
     setPlayerTexture("../asset/player.png");
     setPlayerSprite(_playerTexture);
-    _playerSprite.setScale(4, 4);
+    _playerSprite.setScale(1.5, 1.5);
     _playerSprite.setTextureRect(sf::IntRect(32,0, 32, 44));
 }
 

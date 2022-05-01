@@ -20,5 +20,11 @@ sf::Text GardenText::build() {
     return text;
 }
 
+sf::Text GardenText::build(int x, int y) {
+    sf::Text text = build();
+    text.setPosition(x, y);
+    return text;
+}
+
 GardenText::~GardenText() = default;
 
