@@ -18,6 +18,7 @@ Garden::GameManagement::GameManagement(std::string _gameName, sf::Color _clearCo
         this->isEnable = false;
         std::exit(84);
     }
+    this->isPlacing = false;
     this->scene = GARDEN;
     this->clearColor = _clearColor;
     this->isEnable = true;
@@ -42,7 +43,20 @@ void Garden::GameManagement::handleEvent() {
             setScene(GARDEN);
         if (this->event.key.code == sf::Keyboard::F2)
             setScene(HOUSE);
+        if (!this->isPlacing && this->event.key.code == sf::Keyboard::R) {
+            window.setMouseCursorVisible(false);
+            this->isPlacing = true;
+        }
+        if (this->isPlacing && this->event.key.code == sf::Keyboard::Escape) {
+            window.setMouseCursorVisible(true);
+            this->isPlacing = false;
+        }
     }
+    if (this->event.type == sf::Event::MouseButtonPressed) {
+        window.setMouseCursorVisible(true);
+        this->isPlacing = false;
+    }
+
     player.playerEvent(this->event);
 }
 
@@ -62,6 +76,8 @@ bool Garden::GameManagement::gameLogic() {
     }
     playerCollision();
     mapContent[scene]->renderGraphic(this->window, player);
+    if (this->isPlacing)
+        renderPlacingPot(sf::Mouse::getPosition());
     window.display();
     return this->isEnable;
 }
@@ -136,6 +152,15 @@ void Garden::GameManagement::playerCollision() {
         if (player.getPosY() < 90)
             player.setPosY(90);
     }
+}
+
+void Garden::GameManagement::renderPlacingPot(sf::Vector2<INT> position) {
+    sf::Texture texture;
+    texture.loadFromFile("../asset/pot.png");
+    sf::Sprite sprite (texture);
+    sprite.setScale(0.1, 0.1);
+    sprite.setPosition((float)position.x - 320, (float)position.y - 150);
+    window.draw(sprite);
 }
 
 Garden::GameManagement::~GameManagement() = default;

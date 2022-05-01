@@ -29,9 +29,6 @@ namespace Garden {
         virtual sf::Texture &getBackground() = 0;
 
         ~IMap() = default;
-    protected:
-        std::list<Pot> potList;
-        std::list<Npc> npcList;
     };
 }
 

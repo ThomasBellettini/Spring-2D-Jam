@@ -32,7 +32,7 @@ void debug(double msg)
     std::cout << "[GardenBusiness] (DEBUG) " << msg << std::endl;
 }
 
-int main(int argSize, char **arg) {/**
+int main(int argSize, char **arg) {
     if (argSize > 1) {
         std::string s(arg[1]);
         if (s == "--debug") {
@@ -42,8 +42,7 @@ int main(int argSize, char **arg) {/**
         }
     } else {
         ShowWindow(GetConsoleWindow(), SW_HIDE);
-    }**/
-    enableDebug();
+    }
     Garden::GameManagement game ("GardenBusiness", sf::Color::White);
     std::cout << "Hello\n";
 

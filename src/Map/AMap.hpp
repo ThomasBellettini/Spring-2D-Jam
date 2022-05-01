@@ -38,6 +38,8 @@ namespace Garden {
             return *it;
         }
         sf::Texture background;
+        std::list<Pot> potList;
+        std::list<Npc> npcList;
     };
 }
 

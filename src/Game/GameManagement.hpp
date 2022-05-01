@@ -32,6 +32,7 @@ namespace Garden {
         const Player &get_player() const;
 
         const std::list<Pot> &get_plot_list() const;
+        void renderPlacingPot(sf::Vector2<INT> position);
 
         ~GameManagement();
 
@@ -62,7 +63,7 @@ namespace Garden {
         sf::RenderWindow window;
 
         Garden::Scene scene;
-
+        bool isPlacing;
     };
 }
 
