@@ -46,8 +46,8 @@ int main(int argSize, char **arg) {
     Garden::GameManagement game ("GardenBusiness", sf::Color::White);
     std::cout << "Hello\n";
 
-    game.mapContent[Garden::Scene::GARDEN] = new Garden::GardenMap("../asset/background_garden.png");
-    game.mapContent[Garden::Scene::HOUSE] = new Garden::ChamberMap("../asset/background_chamber.png");
+    game.mapContent[Garden::Scene::GARDEN] = new Garden::GardenMap("./asset/background_garden.png");
+    game.mapContent[Garden::Scene::HOUSE] = new Garden::ChamberMap("./asset/background_chamber.png");
     game.setScene(Garden::HOUSE);
     while (game.gameLogic());
 
