@@ -6,7 +6,7 @@
 */
 
 #include "IMap.hpp"
-
+#include "../Game/GameManagement.hpp"
 
 #ifndef JAM_GARDENBUSINESS_MAP_HPP
 #define JAM_GARDENBUSINESS_MAP_HPP
@@ -17,7 +17,7 @@
 namespace Garden {
     class AMap : public IMap {
     public:
-        AMap(std::string background);
+        AMap(const std::string &background);
 
         void renderGraphic(sf::RenderWindow &window, Garden::Player& player) override;
         void handleMovement(sf::RenderWindow &window, Garden::Player& player) override;

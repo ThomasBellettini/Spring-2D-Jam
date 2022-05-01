@@ -18,6 +18,10 @@ void enableDebug() {
     freopen("CONOUT$", "w", stderr);
 }
 
+bool insideRange(sf::Sprite &sprite, Garden::Pot pot) {
+    return sprite.getTextureRect().intersects(sf::Rect<INT> (pot.get_plot_x() - 50 , pot.get_plot_y() - 50, 100, 100));
+}
+
 void debug(std::string msg)
 {
     std::cout << "[GardenBusiness] (DEBUG) " << msg << std::endl;

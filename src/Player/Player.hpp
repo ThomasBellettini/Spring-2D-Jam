@@ -12,6 +12,7 @@
 #define JAM_GARDENBUSINESS_PLAYER_HPP
 
 namespace Garden {
+    class GameManagement;
     class Player {
         protected:
             enum DirectionX {NONE_X, UP, DOWN};
