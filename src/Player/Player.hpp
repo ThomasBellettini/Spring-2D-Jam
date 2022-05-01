@@ -6,6 +6,7 @@
 */
 
 #include "../../include/libs.hpp"
+#include "Inventory.hpp"
 
 #ifndef JAM_GARDENBUSINESS_PLAYER_HPP
 #define JAM_GARDENBUSINESS_PLAYER_HPP
@@ -33,7 +34,13 @@ namespace Garden {
             void setPlayerTexture(const std::string& filename);
             void setPlayerSprite(const sf::Texture& texture);
 
-        private:
+            float getPosX() const;
+            float getPosY() const;
+            void setPosX(float posX);
+            void setPosY(float posY);
+
+    private:
+            Inventory inventory;
             float _posX;
             float _posY;
             float _speed;

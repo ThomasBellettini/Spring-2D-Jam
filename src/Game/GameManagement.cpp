@@ -53,7 +53,6 @@ bool Garden::GameManagement::gameLogic() {
         handleEvent();
         mapContent[scene]->handleEvent(this->event, player);
     }
-    mapContent[scene]->renderGraphic(this->window, player);
     if (this->deltaTime > 1.00 / 60) {
         this->deltaClock.restart();
         while (this->deltaTime > 1.00 / 60) {
@@ -61,6 +60,8 @@ bool Garden::GameManagement::gameLogic() {
             this->deltaTime -= 1.00 / 60;
         }
     }
+    playerCollision();
+    mapContent[scene]->renderGraphic(this->window, player);
     window.display();
     return this->isEnable;
 }
@@ -100,6 +101,41 @@ const Garden::Player &Garden::GameManagement::get_player() const {
 
 void Garden::GameManagement::setScene(Garden::Scene scene) {
     this->scene = scene;
+}
+
+void Garden::GameManagement::playerCollision() {
+    if (scene == GARDEN) {
+        if (player.getPosX() > 550)
+            player.setPosX(550);
+        if (player.getPosX() < 100) {
+            if (player.getPosY() > 500 && player.getPosY() < 700) {
+                scene = HOUSE;
+                player.setPosX(620);
+                return;
+            }
+            player.setPosX(100);
+        }
+        if (player.getPosY() > 1050)
+            player.setPosY(1050);
+        if (player.getPosY() < 200)
+            player.setPosY(200);
+    }
+    if (scene == HOUSE) {
+        if (player.getPosX() > 620) {
+            if (player.getPosY() > 500 && player.getPosY() < 700) {
+                scene = GARDEN;
+                player.setPosX(100);
+                return;
+            }
+            player.setPosX(620);
+        }
+        if (player.getPosX() < 50)
+            player.setPosX(50);
+        if (player.getPosY() > 1120)
+            player.setPosY(1120);
+        if (player.getPosY() < 90)
+            player.setPosY(90);
+    }
 }
 
 Garden::GameManagement::~GameManagement() = default;

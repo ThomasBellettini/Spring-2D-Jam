@@ -26,6 +26,7 @@ namespace Garden {
         void graphicDisplay();
         void handleEvent();
 
+        void playerCollision();
         void setScene(Garden::Scene scene);
 
         const Player &get_player() const;
