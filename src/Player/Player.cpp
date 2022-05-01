@@ -7,11 +7,11 @@
 
 #include "Player.hpp"
 
-Garden::Player::Player() : _posX(0), _posY(0), _speed(5), _directionX(NONE_X), _directionY(NONE_Y), _rectTime(0)
+Garden::Player::Player() : _posX(500), _posY(590), _speed(5), _directionX(NONE_X), _directionY(NONE_Y), _rectTime(0)
 {
     setPlayerTexture("../asset/player.png");
     setPlayerSprite(_playerTexture);
-    _playerSprite.setScale(1.5, 1.5);
+    _playerSprite.setScale(2, 2);
     _playerSprite.setTextureRect(sf::IntRect(32,0, 32, 44));
 }
 
@@ -52,12 +52,12 @@ void Garden::Player::playerEvent(sf::Event event)
 void Garden::Player::playerDirectionX(DirectionX direction)
 {
     sf::IntRect rect = _playerSprite.getTextureRect();
-    if (direction == UP) {
+    if (direction == UP && _directionX != UP) {
         _directionX = UP;
         if (_directionY == NONE_Y)
             _playerSprite.setTextureRect(sf::IntRect(0,44 * 3, rect.width, rect.height));
     }
-    if (direction == DOWN) {
+    if (direction == DOWN && _directionX != DOWN) {
         _directionX = DOWN;
         if (_directionY == NONE_Y)
             _playerSprite.setTextureRect(sf::IntRect(0,0, rect.width, rect.height));
@@ -72,11 +72,11 @@ void Garden::Player::playerDirectionX(DirectionX direction)
 void Garden::Player::playerDirectionY(DirectionY direction)
 {
     sf::IntRect rect = _playerSprite.getTextureRect();
-    if (direction == LEFT) {
+    if (direction == LEFT && _directionY != LEFT) {
         _directionY = LEFT;
         _playerSprite.setTextureRect(sf::IntRect(0,44 * 1, rect.width, rect.height));
     }
-    if (direction == RIGHT) {
+    if (direction == RIGHT && _directionY != RIGHT) {
         _directionY = RIGHT;
         _playerSprite.setTextureRect(sf::IntRect(0,44 * 2, rect.width, rect.height));
     }
@@ -100,11 +100,11 @@ void Garden::Player::movePlayer()
         _posY -= tmp;
     if (_directionY == RIGHT)
         _posY += tmp;
+    moveHitWall();
     _rectTime = _rectClock.getElapsedTime().asSeconds();
     if (_rectTime > 0.15) {
         movePlayerRect();
         _rectClock.restart();
-        _rectTime = 0;
     }
 }
 
@@ -123,6 +123,18 @@ void Garden::Player::movePlayerRect()
         _playerSprite.setTextureRect(sf::IntRect(32,rect.top, rect.width, rect.height));
     if (rect.left > 32 * 2)
         _playerSprite.setTextureRect(sf::IntRect(0,rect.top, rect.width, rect.height));
+}
+
+void Garden::Player::moveHitWall()
+{
+    if (_posX > 550)
+        _posX = 550;
+    if (_posX < 100)
+        _posX = 100;
+    if (_posY > 1050)
+        _posY = 1050;
+    if (_posY < 200)
+        _posY = 200;
 }
 
 void Garden::Player::setPlayerTexture(const std::string& filename)

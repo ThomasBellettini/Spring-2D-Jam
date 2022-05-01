@@ -27,6 +27,7 @@ namespace Garden {
             void playerDirectionY(DirectionY direction);
             void movePlayer();
             void movePlayerRect();
+            void moveHitWall();
 
             void setPlayerTexture(const std::string& filename);
             void setPlayerSprite(const sf::Texture& texture);
