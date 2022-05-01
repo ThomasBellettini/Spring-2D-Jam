@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2022
 ** Jam_GardenBusiness
 ** File description:
-** Plot.hpp
+** Pot.hpp
 */
 
 #include "IPlant.hpp"
@@ -11,9 +11,9 @@
 #define JAM_GARDENBUSINESS_PLOT_HPP
 
 namespace Garden {
-    class Plot {
+    class Pot {
     public:
-        Plot(int plant_texture_x, int plant_texture_y, int plot_x, int plot_y);
+        Pot(int plant_texture_x, int plant_texture_y, int plot_x, int plot_y);
 
         int get_plant_texture_x() const;
         int get_plant_texture_y() const;
@@ -23,7 +23,7 @@ namespace Garden {
         IPlant *get_plant() const;
         void set_plant(IPlant *plant);
 
-        virtual ~Plot();
+        virtual ~Pot();
 
     private:
         IPlant *plant;

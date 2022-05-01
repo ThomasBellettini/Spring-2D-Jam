@@ -19,14 +19,20 @@ namespace Garden {
 
         virtual const std::string &get_plant_name() const = 0;
         virtual const std::string &get_plant_description() const = 0;
+
         virtual double get_chance_of_grow() const = 0;
-        virtual bool is_fully_grown() const = 0;
+
         virtual bool is_illegal() const = 0;
-        virtual sf::Texture get_seed_texture() const = 0;
-        virtual sf::Texture get_level_one_texture() const = 0;
-        virtual sf::Texture get_fully_grown_texture() const = 0;
         virtual int get_water() const = 0;
         virtual void set_water(int water) = 0;
+
+        virtual int getState() const = 0;
+        virtual int getMaxState() const = 0;
+
+        virtual sf::Texture getStateTexture(int state) = 0;
+
+        virtual void addState() = 0;
+        virtual void setState(int state) = 0;
 
         ~IPlant() = default;
 
@@ -35,8 +41,10 @@ namespace Garden {
         std::string plantDescription;
 
         double chanceOfGrow;
-        bool fullyGrown;
         bool isIllegal;
+
+        int state;
+        int maxState;
 
         int water;
     };

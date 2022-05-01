@@ -24,7 +24,7 @@ Garden::GameManagement::GameManagement(std::string _gameName, sf::Color _clearCo
 
 //    IPlant *plant = new APlant("Colza", "A beautiful yellow plant", 5.0, false, "../asset/colza.png",
 //                  "../asset/colza.png", "../asset/colza.png");
-//    Plot plot (10, 15, 0, 0);
+//    Pot plot (10, 15, 0, 0);
 //    plot.set_plant(plant);
 //    plotList.push_back(plot);
 //
@@ -36,6 +36,12 @@ void Garden::GameManagement::handleEvent() {
     if (this->event.type == sf::Event::Closed) {
         this->window.close();
         this->isEnable = false;
+    }
+    if (this->event.type == sf::Event::KeyPressed) {
+        if (this->event.key.code == sf::Keyboard::F1)
+            setScene(GARDEN);
+        if (this->event.key.code == sf::Keyboard::F2)
+            setScene(HOUSE);
     }
     player.playerEvent(this->event);
 }
@@ -68,18 +74,12 @@ void Garden::GameManagement::graphicDisplay() {
             this->clock.restart();
         }
         for (int i = 0; i < plotList.size(); i++) {
-            Plot plot = getPlantIndex(i);
+            Pot plot = getPlantIndex(i);
             IPlant *tmp = plot.get_plant();
             if (tmp == nullptr) {
                 continue;
             }
-            if (tmp->is_fully_grown()) {
-                sf::Sprite sprite(tmp->get_fully_grown_texture());
-                this->window.draw(sf::Sprite(tmp->get_fully_grown_texture()));
-            } else {
-                sf::Sprite sprite(tmp->get_level_one_texture());
-                this->window.draw(sf::Sprite(tmp->get_level_one_texture()));
-            }
+            window.draw(sf::Sprite (tmp->getStateTexture(tmp->getState())));
         }
     }
     if (!npcList.empty()) {
@@ -90,12 +90,16 @@ void Garden::GameManagement::graphicDisplay() {
     }
 }
 
-const std::list<Garden::Plot> &Garden::GameManagement::get_plot_list() const {
+const std::list<Garden::Pot> &Garden::GameManagement::get_plot_list() const {
     return plotList;
 }
 
 const Garden::Player &Garden::GameManagement::get_player() const {
     return player;
+}
+
+void Garden::GameManagement::setScene(Garden::Scene scene) {
+    this->scene = scene;
 }
 
 Garden::GameManagement::~GameManagement() = default;

@@ -12,6 +12,7 @@ Garden::AMap::AMap(std::string background) {
 }
 
 void Garden::AMap::renderGraphic(sf::RenderWindow &window, Garden::Player& player) {
+    window.draw(sf::Sprite (this->background));
     player.playerRender(window);
 }
 

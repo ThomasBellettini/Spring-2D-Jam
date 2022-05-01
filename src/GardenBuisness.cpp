@@ -9,6 +9,7 @@
 #include "../include/libs.hpp"
 
 #include "Map/GardenMap.hpp"
+#include "Map/ChamberMap.hpp"
 
 void enableDebug() {
     AllocConsole();
@@ -43,7 +44,8 @@ int main(int argSize, char **arg) {/**
     std::cout << "Hello\n";
 
     game.mapContent[Garden::Scene::GARDEN] = new Garden::GardenMap("../asset/background_garden.png");
-
+    game.mapContent[Garden::Scene::HOUSE] = new Garden::ChamberMap("../asset/background_chamber.png");
+    game.setScene(Garden::HOUSE);
     while (game.gameLogic());
 
     return 0;

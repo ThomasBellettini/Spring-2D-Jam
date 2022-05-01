@@ -7,27 +7,28 @@
 
 #include "APlant.hpp"
 
-Garden::APlant::APlant(std::string plantName, std::string plantDescription,
-                       double grow, bool isIllegal, std::string seedTexture,
-                       std::string levelOneTexture,
-                       std::string fullyGrownTexture) {
+Garden::APlant::APlant(std::string plantName, std::string plantDescription, double grow, bool isIllegal, std::map<int, std::string> &textures, int maxState) {
     this->plantName = plantName;
     this->plantDescription = plantDescription;
     this->chanceOfGrow = grow;
     this->isIllegal = isIllegal;
-    this->fullyGrown = false;
+    this->state = 0;
+    this->maxState = maxState;
 
-    this->_seedTexture.loadFromFile(seedTexture);
-    this->_levelOneTexture.loadFromFile(levelOneTexture);
-    this->_fullyGrownTexture.loadFromFile(fullyGrownTexture);
+    for (int i = 0; i < maxState && i > texture.size() ; i++) {
+        sf::Texture sfTexture;
+        sfTexture.loadFromFile(textures[i]);
+        texture[i] = sfTexture;
+    }
+
 }
 
 void Garden::APlant::updateTick() {
     double f = (double)rand() / RAND_MAX;
     double percent = f * (100.0- 0.0);
 
-    if (percent <= this->chanceOfGrow) {
-        this->fullyGrown = true;
+    if (percent <= this->chanceOfGrow && state < maxState) {
+        this->addState();
     }
 }
 
@@ -43,24 +44,8 @@ double Garden::APlant::get_chance_of_grow() const {
     return this->chanceOfGrow;
 }
 
-bool Garden::APlant::is_fully_grown() const {
-    return this->fullyGrown;
-}
-
 bool Garden::APlant::is_illegal() const {
     return this->isIllegal;
-}
-
-sf::Texture Garden::APlant::get_seed_texture() const {
-    return this->_seedTexture;
-}
-
-sf::Texture Garden::APlant::get_level_one_texture() const {
-    return this->_levelOneTexture;
-}
-
-sf::Texture Garden::APlant::get_fully_grown_texture() const {
-    return this->_fullyGrownTexture;
 }
 
 int Garden::APlant::get_water() const {
@@ -69,6 +54,26 @@ int Garden::APlant::get_water() const {
 
 void Garden::APlant::set_water(int water) {
     this->water = water;
+}
+
+int Garden::APlant::getState() const {
+    return this->state;
+}
+
+int Garden::APlant::getMaxState() const {
+    return this->maxState;
+}
+
+void Garden::APlant::addState() {
+    this->state = this->state + 1;
+}
+
+void Garden::APlant::setState(int state) {
+    this->state = state;
+}
+
+sf::Texture Garden::APlant::getStateTexture(int state) {
+    return texture[state];
 }
 
 Garden::APlant::~APlant() = default;

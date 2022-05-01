@@ -5,7 +5,7 @@
 ** IMap.hpp
 */
 
-#include "../Plant/Plot.hpp"
+#include "../Plant/Pot.hpp"
 #include "../Npc/Npc.hpp"
 #include "../Player/Player.hpp"
 
@@ -30,7 +30,7 @@ namespace Garden {
 
         ~IMap() = default;
     protected:
-        std::list<Plot> potList;
+        std::list<Pot> potList;
         std::list<Npc> npcList;
     };
 }

@@ -6,7 +6,7 @@
 */
 
 #include "../Plant/APlant.hpp"
-#include "../Plant/Plot.hpp"
+#include "../Plant/Pot.hpp"
 #include "../../include/libs.hpp"
 #include "../Npc/Npc.hpp"
 
@@ -26,15 +26,17 @@ namespace Garden {
         void graphicDisplay();
         void handleEvent();
 
+        void setScene(Garden::Scene scene);
+
         const Player &get_player() const;
 
-        const std::list<Plot> &get_plot_list() const;
+        const std::list<Pot> &get_plot_list() const;
 
         ~GameManagement();
 
         std::map<Garden::Scene, Garden::IMap*> mapContent;
     private:
-        Plot getPlantIndex(int index) {
+        Pot getPlantIndex(int index) {
             auto it = plotList.begin();
             for (int i = 0; i < index; i++, it++);
             return *it;
@@ -46,7 +48,7 @@ namespace Garden {
         }
         sf::Color clearColor;
         sf::Event event;
-        std::list<Plot> plotList;
+        std::list<Pot> plotList;
         std::list<Npc> npcList;
 
         Garden::Player player;

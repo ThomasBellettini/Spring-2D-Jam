@@ -13,10 +13,6 @@ Garden::GardenMap::GardenMap(const std::string &background) : AMap(background) {
 }
 
 void Garden::GardenMap::renderGraphic(sf::RenderWindow &window, Garden::Player& player) {
-    window.draw(sf::Sprite (this->background));
-
-
-
     AMap::renderGraphic(window, player);
 }
 

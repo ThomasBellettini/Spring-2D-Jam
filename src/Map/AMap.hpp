@@ -27,7 +27,7 @@ namespace Garden {
 
         ~AMap();
     protected:
-        Plot getPlantIndex(int index) {
+        Pot getPlantIndex(int index) {
             auto it = potList.begin();
             for (int i = 0; i < index; i++, it++);
             return *it;

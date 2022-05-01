@@ -13,27 +13,28 @@
 namespace Garden {
     class APlant : public IPlant{
     public:
-        APlant(std::string plantName, std::string plantDescription, double grow, bool isIllegal, std::string seedTexture, std::string levelOneTexture, std::string fullyGrownTexture);
+        APlant(std::string plantName, std::string plantDescription, double grow, bool isIllegal, std::map<int, std::string> &textures, int maxState);
 
         void updateTick() override;
 
         const std::string &get_plant_name() const override;
         const std::string &get_plant_description() const override;
         double get_chance_of_grow() const override;
-        bool is_fully_grown() const override;
         bool is_illegal() const override;
-        sf::Texture get_seed_texture() const override;
-        sf::Texture get_level_one_texture() const override;
-        sf::Texture get_fully_grown_texture() const override;
         void set_water(int water) override;
         int get_water() const override;
+
+        int getState() const override;
+        int getMaxState() const override;
+        void addState() override;
+        void setState(int state) override;
+
+        sf::Texture getStateTexture(int state) override;
 
         virtual ~APlant();
 
     protected:
-        sf::Texture _seedTexture;
-        sf::Texture _levelOneTexture;
-        sf::Texture _fullyGrownTexture;
+        std::map<int, sf::Texture> texture;
     };
 }
 
