@@ -22,6 +22,10 @@ Garden::GameManagement::GameManagement(std::string _gameName, sf::Color _clearCo
     this->clearColor = _clearColor;
     this->isEnable = true;
 
+//    this->music.openFromFile("../asset/theme.ogg");
+//    this->music.setLoop(true);
+//    this->music.setVolume(25.0);
+
 //    IPlant *plant = new APlant("Colza", "A beautiful yellow plant", 5.0, false, "../asset/colza.png",
 //                  "../asset/colza.png", "../asset/colza.png");
 //    Plot plot (10, 15, 0, 0);
