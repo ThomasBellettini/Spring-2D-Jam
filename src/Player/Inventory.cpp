@@ -11,17 +11,17 @@
 Garden::Inventory::Inventory() : _seedSunflower(10), _seedHemp(10), _seedRose(10), _seedCactus(10), _seedRapeseed(10),
                                 _sunflower(10), _hemp(10), _rose(10), _cactus(10), _rapeseed(10)
 {
-    _inventoryTexture.loadFromFile("../asset/background_inventory.png");
-    _textureSeedSunflower.loadFromFile("../asset/graine_de_tournesol.png");
-    _textureSeedHemp.loadFromFile("../asset/graine_de_chanvre.png");
-    _textureSeedRose.loadFromFile("../asset/graine_de_rose.png");
-    _textureSeedCactus.loadFromFile("../asset/graine_de_cactus.png");
-    _textureSeedRapeseed.loadFromFile("../asset/graine_de_colza.png");
-    _textureSunflower.loadFromFile("../asset/tournesol_state_3.png");
-    _textureHemp.loadFromFile("../asset/chanvre_state_3.png");
-    _textureRose.loadFromFile("../asset/rose_state_3.png");
-    _textureCactus.loadFromFile("../asset/cactus_state_3.png");
-    _textureRapeseed.loadFromFile("../asset/colza_state_3.png");
+    _inventoryTexture.loadFromFile("./asset/background_inventory.png");
+    _textureSeedSunflower.loadFromFile("./asset/graine_de_tournesol.png");
+    _textureSeedHemp.loadFromFile("./asset/graine_de_chanvre.png");
+    _textureSeedRose.loadFromFile("./asset/graine_de_rose.png");
+    _textureSeedCactus.loadFromFile("./asset/graine_de_cactus.png");
+    _textureSeedRapeseed.loadFromFile("./asset/graine_de_colza.png");
+    _textureSunflower.loadFromFile("./asset/tournesol_state_3.png");
+    _textureHemp.loadFromFile("./asset/chanvre_state_3.png");
+    _textureRose.loadFromFile("./asset/rose_state_3.png");
+    _textureCactus.loadFromFile("./asset/cactus_state_3.png");
+    _textureRapeseed.loadFromFile("./asset/colza_state_3.png");
 
     _inventorySprite.setTexture(_inventoryTexture);
     _spriteSeedSunflower.setTexture(_textureSeedSunflower);

@@ -156,7 +156,7 @@ void Garden::GameManagement::playerCollision() {
 
 void Garden::GameManagement::renderPlacingPot(sf::Vector2<INT> position) {
     sf::Texture texture;
-    texture.loadFromFile("../asset/pot.png");
+    texture.loadFromFile("./asset/pot.png");
     sf::Sprite sprite (texture);
     sprite.setScale(0.1, 0.1);
     sprite.setPosition((float)position.x - 320, (float)position.y - 150);

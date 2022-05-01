@@ -9,7 +9,7 @@
 
 Garden::Player::Player() : _posX(500), _posY(590), _speed(5), _directionX(NONE_X), _directionY(NONE_Y)
 {
-    setPlayerTexture("../asset/player.png");
+    setPlayerTexture("./asset/player.png");
     setPlayerSprite(_playerTexture);
     _playerSprite.setScale(2, 2);
     _playerSprite.setTextureRect(sf::IntRect(32,0, 32, 44));

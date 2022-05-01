@@ -9,7 +9,7 @@
 
 GardenText::GardenText(const std::string &text, const sf::Color &color) : text(
     text), color(color) {
-    this->font.loadFromFile("../asset/font.ttf");
+    this->font.loadFromFile("./asset/font.ttf");
 }
 
 sf::Text GardenText::build() {
