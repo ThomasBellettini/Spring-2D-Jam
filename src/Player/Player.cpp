@@ -37,10 +37,8 @@ void Garden::Player::playerEvent(sf::Event event)
             playerDirectionX(DOWN);
         if (event.key.code == sf::Keyboard::D)
             playerDirectionY(RIGHT);
-        if (event.key.code == sf::Keyboard::I) {
+        if (event.key.code == sf::Keyboard::I)
             inventory.setOpen(true);
-            std::cout << inventory.isOpen() << std::endl;
-        }
         if (event.key.code == sf::Keyboard::Escape && inventory.isOpen())
             inventory.setOpen(false);
     }
@@ -107,7 +105,6 @@ void Garden::Player::movePlayer()
         _posY -= tmp;
     if (_directionY == RIGHT)
         _posY += tmp;
-    //moveHitWall();
     _rectTime = _rectClock.getElapsedTime().asSeconds();
     if (_rectTime > 0.15) {
         movePlayerRect();
@@ -142,6 +139,8 @@ void Garden::Player::moveHitWall()
         _posY = 1050;
     if (_posY < 200)
         _posY = 200;
+
+    _playerSprite.getTextureRect().intersects(sf::Rect<INT>(0, 0, 100, 100));
 }
 
 void Garden::Player::setPlayerTexture(const std::string& filename)
