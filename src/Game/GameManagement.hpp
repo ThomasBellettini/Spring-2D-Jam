@@ -10,6 +10,8 @@
 #include "../../include/libs.hpp"
 #include "../Npc/Npc.hpp"
 
+#include "../Map/IMap.hpp"
+
 #include "../Player/Player.hpp"
 
 #ifndef JAM_GARDENBUSINESS_GAMEMANAGEMENT_HPP
@@ -30,10 +32,15 @@ namespace Garden {
 
         ~GameManagement();
 
-        sf::RenderWindow window;
+        std::map<Garden::Scene, Garden::IMap*> mapContent;
     private:
         Plot getPlantIndex(int index) {
             auto it = plotList.begin();
+            for (int i = 0; i < index; i++, it++);
+            return *it;
+        }
+        Npc getNPCIndex(int index) {
+            auto it = npcList.begin();
             for (int i = 0; i < index; i++, it++);
             return *it;
         }
@@ -49,6 +56,9 @@ namespace Garden {
 
         sf::Clock deltaClock;
         float deltaTime;
+        sf::RenderWindow window;
+
+        Garden::Scene scene;
 
     };
 }
